@@ -20,12 +20,12 @@ const Home: NextPage = () => {
 
 				<a href="https://github.com/tobyscott25" className={styles.card}>
 					<div className="text-xl">GitHub &rarr;</div>
-					<div className="text-lg">See my contributions, projects, dotfiles, etc.</div>
+					<div className="text-lg">Projects, contributions &amp; dotfiles</div>
 				</a>
 
 				<a href="https://twitter.com/tobyscott25" className={styles.card}>
 					<div className="text-xl">Twitter &rarr;</div>
-					<div className="text-lg">Read the thoughts and opinions that I share.</div>
+					<div className="text-lg">Thoughts and opinions</div>
 				</a>
 				
 			</div>
