@@ -6,3 +6,7 @@
 	@apply
 	text-white;
 }
+
+html, body {
+	@apply overflow-hidden
+}
