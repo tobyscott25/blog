@@ -26,11 +26,11 @@ const Home: NextPage = () => {
 			<div className={styles.main}>
 
 				<div className="my-5 text-center">
-					<div className="text-6xl">Toby Scott</div>
+					<div className="text-6xl">{process.env.NEXT_PUBLIC_FULL_NAME}</div>
 					<div className="text-2xl mt-4">Software Engineer, Greater Melbourne Area</div>
 				</div>
 
-				<a href="https://github.com/tobyscott25" className={styles.card} target="_blank">
+				<a href={process.env.NEXT_PUBLIC_GITHUB_URL} className={styles.card} target="_blank">
 					<div className="text-xl">
 						<FontAwesomeIcon icon={githubIconDefinition} className='mr-3' />
 						GitHub &rarr;
@@ -38,7 +38,7 @@ const Home: NextPage = () => {
 					<div className="text-lg">Projects, contributions &amp; dotfiles</div>
 				</a>
 
-				<a href="https://twitter.com/tobyscott25" className={styles.card} target="_blank">
+				<a href={process.env.NEXT_PUBLIC_TWITTER_URL} className={styles.card} target="_blank">
 					<div className="text-xl">
 					<FontAwesomeIcon icon={twitterIconDefinition} className='mr-3' />
 						Twitter &rarr;
