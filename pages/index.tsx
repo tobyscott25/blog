@@ -18,12 +18,12 @@ const Home: NextPage = () => {
 					<div className="text-2xl mt-4">Software Engineer, Greater Melbourne Area</div>
 				</div>
 
-				<a href="https://github.com/tobyscott25" className={styles.card}>
+				<a href="https://github.com/tobyscott25" className={styles.card} target="_blank">
 					<div className="text-xl">GitHub &rarr;</div>
 					<div className="text-lg">Projects, contributions &amp; dotfiles</div>
 				</a>
 
-				<a href="https://twitter.com/tobyscott25" className={styles.card}>
+				<a href="https://twitter.com/tobyscott25" className={styles.card} target="_blank">
 					<div className="text-xl">Twitter &rarr;</div>
 					<div className="text-lg">Thoughts and opinions</div>
 				</a>
