@@ -7,7 +7,8 @@ const Home: NextPage = () => {
 		<div className={styles.container}>
 			<Head>
 				<title>Toby Scott</title>
-				<meta name="description" content="About Toby Scott" />
+				<meta name="description" content="Software Engineer, Greater Melbourne Area" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
