@@ -12,6 +12,9 @@ const githubIconDefinition: IconDefinition = findIconDefinition(githubLookup)
 const twitterLookup: IconLookup = { prefix: 'fab', iconName: 'twitter' }
 const twitterIconDefinition: IconDefinition = findIconDefinition(twitterLookup)
 
+const ethereumLookup: IconLookup = { prefix: 'fab', iconName: 'ethereum' }
+const ethereumIconDefinition: IconDefinition = findIconDefinition(ethereumLookup)
+
 
 const Home: NextPage = () => {
 	return (
@@ -45,6 +48,11 @@ const Home: NextPage = () => {
 					</div>
 					<div className="text-lg">Thoughts and opinions</div>
 				</a>
+
+				<div className='my-5 text-sm'>
+					<FontAwesomeIcon icon={ethereumIconDefinition} className='mr-2' />
+					<span className='font-mono'>0xF0B4cA8f326b7C14A7CC84355C057446587Dab0f</span>
+				</div>
 				
 			</div>
 
