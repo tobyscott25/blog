@@ -26,3 +26,13 @@ Build for production
 ```bash
 hugo
 ```
+
+Build Docker image:
+```bash
+docker build -t tobyscott.dev .
+```
+
+Run Docker container:
+```bash
+docker run -p 8080:80 -d tobyscott.dev
+```
