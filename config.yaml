@@ -1,0 +1,48 @@
+baseURL: 'https://tobyscott.dev/'
+languageCode: 'en-au'
+title: 'Toby Scott'
+theme: "PaperMod"
+paginate: 5
+
+googleAnalytics: G-91GQY1XE47
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  # SEO
+  title: Toby Scott
+  description: My blog of docs, thoughts and technical discovery.
+  keywords: [Blog, Portfolio, Software Engineer]
+  author: Toby Scott
+  DateFormat: "2 January 2006"
+
+  defaultTheme: auto
+  homeInfoParams:
+    Title: Hi there 👋
+    Content: Founder of [Safety Beacon](https://safetybeacon.app) (NFP) | Co-founder of [UniteMe](https://uniteme.app) and [Study Score](https://studyscore.app) | Software Engineer, Greater Melbourne Area
+  socialIcons: # optional
+    - name: "github"
+      url: "https://github.com/tobyscott25"
+    - name: "twitter"
+      url: "https://twitter.com/tobyscott25"
+    - name: "linkedin"
+      url: "https://linkedin.com/in/toby-scott"
+    - name: "stackoverflow"
+      url: "https://stackoverflow.com/users/6000173"
+    - name: "youtube"
+      url: "https://youtube.com/@TobyScott"
+  ShowShareButtons: true
+  ShareButtons: ["twitter", "reddit", "linkedin"]
+  # ShowReadingTime: true
+  # ShowToc: true
+  ShowBreadCrumbs: true
+  # ShowWordCount: true
+  editPost:
+    URL: "https://github.com/tobyscott25/tobyscott.dev/tree/main/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
+  ShowCodeCopyButtons: true
+  # ShowPostNavLinks: true
+  
