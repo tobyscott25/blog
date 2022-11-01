@@ -1,13 +1,10 @@
-# Stage 1 - Build with Node
-FROM node:latest as build-stage
+FROM ubuntu:22.04 as builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY ./ .
-RUN npm run build
+COPY . .
+RUN apt update && apt install -y hugo
+RUN hugo
 
-# Stage 2 - Host with Nginx
-FROM nginx as production-stage
-RUN mkdir /app
-COPY --from=build-stage /app/out /app
+FROM nginx:1.23.2-alpine as server
+RUN mkdir /public_html
+COPY --from=builder /app/public /public_html
 COPY nginx.conf /etc/nginx/nginx.conf

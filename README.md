@@ -1,35 +1,38 @@
 # tobyscott.dev
 
-## About
+## Guide
 
-A personal website built using:
-- [Next.js](https://nextjs.org/) for SSG & SEO,
-- [TypeScript](https://www.typescriptlang.org/) for static typing,
-- and [Docker](https://www.docker.com/) with [Nginx](https://www.nginx.com/) base to serve the statically generated site in production.
-
-
-## Installation and setup
-
-Install dependencies:
+Download themes on fresh clone (git submodules may not get cloned automatically)
 ```bash
-$ npm install
+git submodule update --init --recursive
 ```
 
-## Development setup
-
-Start the development server:
+Update themes (by updating the git submodules)
 ```bash
-$ npm run dev
+git submodule update --remote --merge
 ```
 
-## Production deployment
-
-Build the Docker image:
+Create a new blog post
 ```bash
-$ docker build -t <username>/tobyscott.dev .
+hugo new posts/title-of-the-post.md
 ```
 
-Run the Docker container:
+Start the development server (with drafts enabled)
 ```bash
-$ docker run -p 8080:80 -d <username>/tobyscott.dev
+hugo server -D
+```
+
+Build for production
+```bash
+hugo
+```
+
+Build Docker image:
+```bash
+docker build -t tobyscott.dev .
+```
+
+Run Docker container:
+```bash
+docker run -p 8080:80 -d tobyscott.dev
 ```
