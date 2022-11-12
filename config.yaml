@@ -20,7 +20,7 @@ params:
 
   defaultTheme: auto
   homeInfoParams:
-    Title: Hi there 👋
+    Title: Welcome 👋
     Content: Software Engineer, Greater Melbourne Area | Founder of [Safety Beacon](https://safetybeacon.app) (NFP) | Co-founder of [UniteMe](https://uniteme.app) and [Study Score](https://studyscore.app)
   socialIcons: # optional
     - name: "github"
