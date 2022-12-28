@@ -5,7 +5,7 @@
 hugo_stats.json
 
 # Themes (these are usually git submodules)
-/themes/
+# /themes/
 
 # Executable may be added to repository
 hugo.exe
