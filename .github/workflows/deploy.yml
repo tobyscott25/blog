@@ -40,7 +40,7 @@ jobs:
         run: |
           hugo --minify
           mv public html
-          sudo scp -r html ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/tobyscott.dev/
+          scp -r html ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/tobyscott.dev/
 
       # - name: Build and upload Hugo site
       #   run: |
