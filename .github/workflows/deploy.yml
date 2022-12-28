@@ -1,7 +1,16 @@
 name: first-github-action
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
-  write-to-console:
+  test-changes:
+    name: Test Changes
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hello world!'
+      - run: echo 'Testing changes...'
+  deploy-changes:
+    name: Deploy Changes
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Deploying changes...'
