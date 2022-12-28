@@ -38,6 +38,7 @@ jobs:
 
       - name: Build and upload Hugo site
         run: |
+          git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
           hugo --minify
           mv public html
           scp -r html ${{ secrets.SSH_HOST }}:/var/www/html/tobyscott.dev/html
