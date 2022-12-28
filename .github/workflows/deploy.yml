@@ -40,4 +40,10 @@ jobs:
         run: |
           hugo --minify
           mv public html
-          scp -r html ${{ secrets.SSH_HOST }}:/var/www/html/tobyscott.dev/html
+          scp -r html ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/tobyscott.dev/html
+
+      # - name: Build and upload Hugo site
+      #   run: |
+      #     hugo --minify
+      #     mv public html
+      #     rsync -avz -e ssh ./html/ ${{ secrets.SSH_HOST }}:/var/www/html/tobyscott.dev/html
