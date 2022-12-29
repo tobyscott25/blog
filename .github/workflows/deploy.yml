@@ -16,8 +16,7 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-22.04
     steps:
-      - run: echo 'Deploying changes...'
-
+    
       - name: Git Checkout
         uses: actions/checkout@v3
         with:
