@@ -4,6 +4,7 @@ title: 'Toby Scott'
 theme: "PaperMod"
 paginate: 5
 
+enableRobotsTXT: true
 googleAnalytics: G-91GQY1XE47
 
 minify:
@@ -17,6 +18,9 @@ params:
   keywords: [Blog, Portfolio, Software Engineer]
   author: Toby Scott
   DateFormat: "2 January 2006"
+
+  assets:
+    favicon: "favicon.svg"
 
   defaultTheme: auto
   homeInfoParams:
