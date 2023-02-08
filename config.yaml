@@ -52,14 +52,16 @@ params:
   socialIcons: # optional
     - name: "github"
       url: "https://github.com/tobyscott25"
-    - name: "twitter"
-      url: "https://twitter.com/tobyscott25"
-    - name: "linkedin"
-      url: "https://linkedin.com/in/toby-scott"
     - name: "stackoverflow"
       url: "https://stackoverflow.com/users/6000173"
+    - name: "linkedin"
+      url: "https://linkedin.com/in/toby-scott"
     - name: "youtube"
       url: "https://youtube.com/@TobyScott"
+    - name: "email"
+      url: "mailto:hi@tobyscott.dev"
+    - name: "key"
+      url: "mailto:hi@tobyscott.dev"
   ShowShareButtons: true
   ShareButtons: ["twitter", "reddit", "linkedin"]
   # ShowReadingTime: true
