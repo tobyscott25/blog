@@ -11,6 +11,29 @@ minify:
   disableXML: true
   minifyOutput: true
 
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 10
+    - identifier: search
+      name: Search
+      url: /search
+      weight: 20
+    - identifier: archives
+      name: Archive
+      url: /archives
+      weight: 30
+    # - identifier: tags
+    #   name: Tags
+    #   url: /tags
+    #   weight: 40
+    - identifier: 
+      name: GitHub
+      url: https://github.com/tobyscott25
+      weight: 50
+
 params:
   # SEO
   title: Toby Scott
@@ -50,3 +73,8 @@ params:
   ShowCodeCopyButtons: true
   # ShowPostNavLinks: true
   
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
