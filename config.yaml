@@ -60,8 +60,6 @@ params:
       url: "https://youtube.com/@TobyScott"
     - name: "email"
       url: "mailto:hi@tobyscott.dev"
-    - name: "key"
-      url: "mailto:hi@tobyscott.dev"
   ShowShareButtons: true
   ShareButtons: ["twitter", "reddit", "linkedin"]
   # ShowReadingTime: true
