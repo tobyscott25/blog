@@ -2,7 +2,7 @@
 date: 2023-02-08T15:04:17+11:00
 title: "How to configure Touch ID to authorise sudo commands on macOS"
 description: "Configuring Touch ID to authorise sudo commands on macOS (at a system-wide scope)"
-tags: ["macos", "sudo", "touch id", "macintosh", "apple", "unix", "configuration"]
+tags: ["macos", "sudo", "touch id", "macintosh", "apple", "unix", "configuration", "terminal", "shell", "command line", "cli"]
 hidden: false
 ---
 
