@@ -30,6 +30,12 @@ session    required       pam_permit.so
 
 Now close that Terminal, open a fresh one, run a `sudo` command and you'll be prompted to use your Touch ID! 🎉
 
-I considered that this could cause issues if running a `sudo` command while SSH'd into another server, but I tested it and was pleased to find it didn't interfere!
+I was concerned this may cause issues when running `sudo` commands on another server via SSH, but I tested it and was pleased to find it didn't interfere!
 
-It's very simple, and now I really notice having to type my password for sudo commands on my desktop! 😂
+Although, one cavieat I noticed was this wouldn't work while docked to a Lenovo DisplayLink, which luckily, I was able to fix with one command from a [StackExchange answer](https://apple.stackexchange.com/a/444202/465731)!
+
+```bash
+defaults write com.apple.security.authorization ignoreArd -bool TRUE
+```
+
+Now I'm used to this, I really notice having to type my password for sudo commands on my desktop! 😂
