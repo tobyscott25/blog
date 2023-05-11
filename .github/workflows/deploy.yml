@@ -1,4 +1,4 @@
-name: deploy
+name: Build and deploy website
 
 on:
   push:
@@ -6,43 +6,34 @@ on:
       - main
 
 jobs:
-  # test-changes:
-  #   name: Test Changes
-  #   runs-on: ubuntu-22.04
-  #   steps:
-  #     - run: echo 'Testing changes...'
-
-  build-and-deploy:
-    name: Build and deploy
+  deploy:
     runs-on: ubuntu-22.04
     steps:
-    
       - name: Git Checkout
         uses: actions/checkout@v3
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          submodules: true # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
       - name: Install Hugo within GH Action runner
         run: sudo apt install hugo -y
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
+      - name: Build site assets
+        run: hugo --minify # Builds into folder named "public"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: unnecessary
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-      - name: Add host to known hosts within GH Action runner
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Upload site assets to S3
+        uses: aws-actions/aws-cli@v1
+        with:
+          args: s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }}/ --acl public-read --delete
 
-      - name: Build and upload Hugo site
-        run: |
-          hugo --minify
-          mv public html
-          scp -r html ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/tobyscott.dev
-
-      # - name: Build and upload Hugo site
-      #   run: |
-      #     hugo --minify
-      #     mv public html
-      #     rsync -avz -e ssh ./html/ ${{ secrets.SSH_HOST }}:/var/www/html/tobyscott.dev/html
+      - name: Invalidate CloudFront distribution cache
+        uses: aws-actions/aws-cli@v1
+        with:
+          args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
