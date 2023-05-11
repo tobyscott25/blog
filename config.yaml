@@ -1,6 +1,6 @@
-baseURL: 'https://tobyscott.dev/'
-languageCode: 'en-au'
-title: 'Toby Scott'
+baseURL: "https://tobyscott.dev/"
+languageCode: "en-au"
+title: "Toby Scott"
 theme: "PaperMod"
 paginate: 5
 
@@ -29,7 +29,7 @@ menu:
     #   name: Tags
     #   url: /tags
     #   weight: 40
-    - identifier: 
+    - identifier:
       name: GitHub
       url: https://github.com/tobyscott25
       weight: 50
@@ -48,7 +48,7 @@ params:
   defaultTheme: auto
   homeInfoParams:
     Title: Welcome 👋
-    Content: Software Engineer, Greater Melbourne Area | Founder of [Safety Beacon (NFP)](https://github.com/safetybeacon) | Co-founder of [UniteMe](https://uniteme.app) and [Study Score](https://studyscore.app)
+    Content: Software Engineer, Greater Melbourne Area | Working on [Safety Beacon (NFP)](https://github.com/safetybeacon) in my spare time
   socialIcons: # optional
     - name: "github"
       url: "https://github.com/tobyscott25"
@@ -74,7 +74,7 @@ params:
     appendFilePath: true # to append file path to Edit link
   ShowCodeCopyButtons: true
   # ShowPostNavLinks: true
-  
+
 outputs:
   home:
     - HTML
