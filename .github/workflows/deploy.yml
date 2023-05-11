@@ -29,11 +29,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Upload site assets to S3
-        uses: aws-actions/aws-cli@v1
-        with:
-          args: s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }}/ --acl public-read --delete
+        run: aws s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }}/ --acl public-read --delete
 
       - name: Invalidate CloudFront distribution cache
-        uses: aws-actions/aws-cli@v1
-        with:
-          args: cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
