@@ -48,7 +48,7 @@ params:
   defaultTheme: auto
   homeInfoParams:
     Title: Welcome 👋
-    Content: Software Engineer, Greater Melbourne Area | Founder of [Safety Beacon (NFP)](https://github.com/safetybeacon) | Co-founder of [UniteMe](https://uniteme.app) and [Study Score](https://studyscore.app)
+    Content: Software Engineer, Greater Melbourne Area | Currently working on [Safety Beacon (NFP)](https://github.com/safetybeacon) and [Study Score](https://studyscore.app)
   socialIcons: # optional
     - name: "github"
       url: "https://github.com/tobyscott25"
