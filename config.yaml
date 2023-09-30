@@ -17,6 +17,10 @@ menu:
       name: Home
       url: /
       weight: 10
+    - identifier: posts
+      name: Posts
+      url: /posts
+      weight: 20
     - identifier: search
       name: Search
       url: /search
@@ -25,11 +29,11 @@ menu:
       name: Archive
       url: /archives
       weight: 30
-    # - identifier: tags
-    #   name: Tags
-    #   url: /tags
-    #   weight: 40
-    - identifier:
+    - identifier: tags
+      name: Tags
+      url: /tags
+      weight: 40
+    - identifier: github
       name: GitHub
       url: https://github.com/tobyscott25
       weight: 50
@@ -37,18 +41,34 @@ menu:
 params:
   # SEO
   title: Toby Scott
-  description: My blog of docs, thoughts and technical discovery.
-  keywords: [Blog, Portfolio, Software Engineer]
+  description: Personal blog of thoughts and technical discoveries
+  keywords:
+    [Blog, Portfolio, Software Engineer, Tutorial, TypeScript, Go, Linux]
   author: Toby Scott
-  DateFormat: "2 January 2006"
 
+  DateFormat: "2 January 2006"
   assets:
     favicon: "favicon.svg"
-
   defaultTheme: auto
+
   homeInfoParams:
     Title: Welcome 👋
     Content: Software Engineer, Greater Melbourne Area | Currently working on [Safety Beacon (NFP)](https://github.com/safetybeacon) and [Study Score](https://studyscore.app)
+
+  profileMode:
+    enabled: true # Disable this to change to "home info" mode
+    title: Toby Scott # optional, default will be site title
+    subtitle: Software Engineer, Greater Melbourne Area
+    imageUrl: "/avatar.png" # optional
+    imageTitle: "Avatar" # optional
+    imageWidth: 150 # custom size
+    imageHeight: 150 # custom size
+    # buttons:
+    #   - name: Blog posts
+    #     url: "/posts/"
+    #   - name: Projects
+    #     url: "/projects/"
+
   socialIcons: # optional
     - name: "github"
       url: "https://github.com/tobyscott25"
@@ -62,10 +82,11 @@ params:
       url: "https://youtube.com/@TobyScott"
     - name: "email"
       url: "mailto:hi@tobyscott.dev"
+
   ShowShareButtons: true
-  ShareButtons: ["twitter", "reddit", "linkedin"]
-  # ShowReadingTime: true
-  # ShowToc: true
+  ShareButtons: ["linkedin", "reddit", "twitter"]
+  ShowReadingTime: true
+  ShowToc: true
   ShowBreadCrumbs: true
   # ShowWordCount: true
   editPost:
