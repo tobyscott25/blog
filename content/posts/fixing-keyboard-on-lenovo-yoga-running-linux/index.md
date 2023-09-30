@@ -2,10 +2,14 @@
 date: 2023-01-14T10:28:45+11:00
 title: "How to fix an unresponsive keyboard on Lenovo Yoga running Linux"
 description: "Updating GRUB config to solve an unresponsive keyboard issue on a Lenovo Yoga Slim 7 Pro"
-tags: ['Linux', 'Ubuntu', 'Lenovo', 'Keyboard', 'Fix', 'GRUB', 'unresponsive']
+tags: ["Linux", "Ubuntu", "Lenovo", "Keyboard", "Fix", "GRUB", "unresponsive"]
 # author: ["Toby Scott", "Other example contributor"]
 hidden: false
 draft: false
+cover:
+  image: "cover.jpg"
+  alt: "Typing on a keyboard"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
 I recently installed Ubuntu Linux on a Lenovo Yoga Slim 7 Pro, although I had to connect an external keyboard to go through the installation process because the built-in keyboard was completely unresponsive!

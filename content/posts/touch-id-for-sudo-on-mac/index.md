@@ -2,8 +2,25 @@
 date: 2023-02-08T15:04:17+11:00
 title: "How to configure Touch ID to authorise sudo commands on macOS"
 description: "Configuring Touch ID to authorise sudo commands on macOS (at a system-wide scope)"
-tags: ["macos", "sudo", "touch id", "macintosh", "apple", "unix", "configuration", "terminal", "shell", "command line", "cli"]
+tags:
+  [
+    "macos",
+    "sudo",
+    "touch id",
+    "macintosh",
+    "apple",
+    "unix",
+    "configuration",
+    "terminal",
+    "shell",
+    "command line",
+    "cli",
+  ]
 hidden: false
+cover:
+  image: "cover.jpg"
+  alt: "Touch ID on MacBook"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
 The other day I was watching one of [NetworkChuck's recent videos](https://www.youtube.com/watch?v=qOrlYzqXPa8) where he was running through a bunch of shell commands for Mac, and one stuck out to me in particular... The ability to configure Touch ID to authorise `sudo` commands! 🤯

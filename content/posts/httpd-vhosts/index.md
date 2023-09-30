@@ -2,24 +2,44 @@
 date: 2021-11-03T21:23:54+11:00
 title: "Configuring subdomains in XAMPP"
 description: 'How to configure subdomains - or "virtual hosts" - in an XAMPP development environment.'
-tags: ["xampp", "apache", "httpd", "virtual hosts", "subdomains", "web development", "dev environment", "configuration", "macos", "localhost"]
+tags:
+  [
+    "xampp",
+    "apache",
+    "httpd",
+    "virtual hosts",
+    "subdomains",
+    "web development",
+    "dev environment",
+    "configuration",
+    "macos",
+    "localhost",
+  ]
+cover:
+  image: "cover.webp"
+  alt: "XAMPP Dashboard"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
 # My environemnt
+
 At the time of writing, I am running [XAMPP](https://www.apachefriends.org/) 8.0.3 on macOS 11.4
 
 # 1. Enable Virtual Hosts in Apache
+
 Go to `/Applications/XAMPP/xamppfiles/etc/httpd.conf` and uncomment this line:
+
 ```
 #Include etc/extra/httpd-vhosts.conf
 ```
 
 # 2. Configuring a new virtual host
+
 1. Navigate to XAMPP's `htdocs` and create a directory named `subdomains`.
 
 2. Create a directory inside `subdomains` to be the root directory of the new subdomain. You may call it whatever you like, for this example we will call it `mysubdomain`.
 
-2. Replace the code inside `/Applications/XAMPP/xamppfiles/etc/extra/httpd-vhosts.conf` to configure the new virtual host (subdomain). 
+3. Replace the code inside `/Applications/XAMPP/xamppfiles/etc/extra/httpd-vhosts.conf` to configure the new virtual host (subdomain).
 
 ```
 # localhost
@@ -74,17 +94,22 @@ Go to `/Applications/XAMPP/xamppfiles/etc/httpd.conf` and uncomment this line:
 ```
 
 # 3. Edit your hosts file
+
 Edit `/etc/hosts` as superuser and add your new subdomain to the list.
+
 ```
 sudo vim /etc/hosts
 ```
+
 ```
 127.0.0.1 localhost
 127.0.0.1 mysubdomain.localhost
 ```
+
 This will point the hostname `mysubdomain.localhost` to your local machine, Apache will then handle any HTTP/HTTPS requests to it.
 
 # Final notes
+
 - Restart XAMPP for the changes to apply.
 - Remember to ALWAYS make backups of the original config files.
 - You may repeat this process to add as many subdomains as you like.

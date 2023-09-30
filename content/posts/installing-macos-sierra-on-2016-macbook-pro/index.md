@@ -2,17 +2,32 @@
 date: 2023-01-01T23:11:06+11:00
 title: "How to extract an old macOS installer from PKG on a newer version of macOS"
 description: "I have an old MacBook running Ubuntu and I decided to reinstall macOS on it. Should be easy right?"
-tags: ["mac", "macos", "apple", "macbook", "intel", "m1", "sierra", "bootable", "recovery", "pkgutil", "appstore"]
+tags:
+  [
+    "mac",
+    "macos",
+    "apple",
+    "macbook",
+    "intel",
+    "m1",
+    "sierra",
+    "bootable",
+    "recovery",
+    "pkgutil",
+    "appstore",
+  ]
 hidden: false
+cover:
+  image: "cover.jpg"
+  alt: "Installing macOS Sierra"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
-
 
 ## Background
 
 I have an old 2016 Intel MacBook Pro that I've had running Ubuntu for a while but could never get the sound to work in Linux so I decided to reinstall macOS on it. Should be easy right? Wrong...
 
-Instead of setting up a dual boot situation, I *cleverly* decided to wipe the whole hard drive in favour of Ubuntu, recovery partitions and all. But no matter, Intel Macs can boot into an internet recovery system without the recovery partition by holding ⌘ R on power. So that I did, I wiped the hard drive with Disk Utility, and started a fresh install of macOS.
-
+Instead of setting up a dual boot situation, I _cleverly_ decided to wipe the whole hard drive in favour of Ubuntu, recovery partitions and all. But no matter, Intel Macs can boot into an internet recovery system without the recovery partition by holding ⌘ R on power. So that I did, I wiped the hard drive with Disk Utility, and started a fresh install of macOS.
 
 ## Installing macOS Sierra via Internet Recovery failing
 
@@ -37,12 +52,11 @@ sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createins
 
 Except to actually use the `createinstallmedia` utility, you have to extract the actual installer from the downloaded file first.
 
-
 ## Extracting the older installer
 
-So I downloaded macOS Sierra (10.12) but I cannot believe the complexity of it... the download is actually a `.dmg` file, that then contains a `.pkg` file, which you *THEN* need to run (with Installer.app), which will *THEN* copy the *ACTUAL* installer into your Applications folder, but *ONLY IF* you are running a version of macOS that is *OLDER* than the version you downloaded! Honestly, Apple, what the heck...
+So I downloaded macOS Sierra (10.12) but I cannot believe the complexity of it... the download is actually a `.dmg` file, that then contains a `.pkg` file, which you _THEN_ need to run (with Installer.app), which will _THEN_ copy the _ACTUAL_ installer into your Applications folder, but _ONLY IF_ you are running a version of macOS that is _OLDER_ than the version you downloaded! Honestly, Apple, what the heck...
 
-So trying to run this `.pkg` file on my 2021 M1 MacBook Pro, I get this message: `This package will run a program to determine if the software can be installed.` Followed by this error: `This version of macOS 10.12.6 cannot be installed on this computer.`. But I don't want to *install* it on this computer, I just want the installer itself!!
+So trying to run this `.pkg` file on my 2021 M1 MacBook Pro, I get this message: `This package will run a program to determine if the software can be installed.` Followed by this error: `This version of macOS 10.12.6 cannot be installed on this computer.`. But I don't want to _install_ it on this computer, I just want the installer itself!!
 
 I figured the installer I need must exist in this `.pkg` file somewhere so I tried to inspect the package contents, but the usual 'Show package contents' option of the context menu was missing! Alrighty then, let's try this manually..
 
@@ -60,7 +74,6 @@ pkgutil --flatten ~/Desktop/sierrapkg ~/Desktop/ModifiedInstallOS.pkg
 
 Now when I run this modified `.pkg` file (with Installer.app) on my 2021 M1 MacBook Pro, it happily copies the full `Install macOS Sierra.app` file into my Applications folder! 🎉
 
-
 ## Creating the bootable installation media
 
 Once I had the Sierra installer, I went back to [creating a bootable installer for macOS](https://support.apple.com/en-us/HT201372) but the command for macOS Sierra (10.12) is missing! We have the command for macOS El Capitan (10.11):
@@ -69,13 +82,13 @@ Once I had the Sierra installer, I went back to [creating a bootable installer f
 sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume --applicationpath /Applications/Install\ OS\ X\ El\ Capitan.app
 ```
 
-And for macOS ***High*** Sierra (10.13) and onwards:
+And for macOS **_High_** Sierra (10.13) and onwards:
 
 ```bash
 sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 ```
 
-But macOS Sierra (10.12) is just missing. 😲 That's it. I'm giving up on Sierra (10.12) and skipping straight to ***High*** Sierra (10.13).
+But macOS Sierra (10.12) is just missing. 😲 That's it. I'm giving up on Sierra (10.12) and skipping straight to **_High_** Sierra (10.13).
 
 So I went back to the [downloads page](https://support.apple.com/en-gb/HT211683) to realise that High Sierra (10.13) onwards aren't direct downloads, they're all just links to the Mac App Store.
 
@@ -88,7 +101,6 @@ I figured it could be due to the chip architecture because this OS version was r
 ```bash
 sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 ```
-
 
 ## Conclusion
 
