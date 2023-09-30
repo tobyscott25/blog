@@ -16,8 +16,7 @@ tags:
   ]
 cover:
   image: "cover.png"
-  alt: "Arch Linux running i3"
-  caption: "[Screenshot credit](https://www.reddit.com/r/unixporn/comments/fnqfzb/i3gaps_mrczlnks_a_featureful_yet_simple_arch/)"
+  alt: "Arch Linux"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 

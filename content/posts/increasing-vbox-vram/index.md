@@ -4,8 +4,8 @@ title: "Increasing VirtualBox's video memory limit"
 description: "How to increase VirtualBox's default video memory limit of 128Mb"
 tags: ["virtualbox", "vram", "video memory", "virtualisation", "vm"]
 cover:
-  image: "cover.png"
-  alt: "VirtualBox on macOS"
+  image: "cover.jpg"
+  alt: "Virtualisation"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 

@@ -16,8 +16,8 @@ tags:
     "localhost",
   ]
 cover:
-  image: "cover.webp"
-  alt: "XAMPP Dashboard"
+  image: "cover.png"
+  alt: "Apache config"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 

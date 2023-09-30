@@ -18,7 +18,7 @@ tags:
   ]
 hidden: false
 cover:
-  image: "cover.jpg"
+  image: "cover.png"
   alt: "Touch ID on MacBook"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
