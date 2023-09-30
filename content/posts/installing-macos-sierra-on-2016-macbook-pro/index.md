@@ -18,8 +18,8 @@ tags:
   ]
 hidden: false
 cover:
-  image: "cover.jpg"
-  alt: "Installing macOS Sierra"
+  image: "cover.png"
+  alt: "MacOS Sierra"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
