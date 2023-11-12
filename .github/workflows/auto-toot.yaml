@@ -1,0 +1,21 @@
+name: Test auto-toot
+
+on:
+  workflow_dispatch:
+
+jobs:
+  post-to-mastodon:
+    name: Post to Mastodon
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+      - run: go mod download
+      - name: Auto-toot
+        env:
+          MASTODON_ACCESS_TOKEN: "I HOPE THIS WORKS"
+        run: go run auto-toot.go
