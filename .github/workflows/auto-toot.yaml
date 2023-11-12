@@ -1,6 +1,8 @@
 name: Test auto-toot
 
 on:
+  push:
+    branches: [autotoot]
   workflow_dispatch:
 
 jobs:
