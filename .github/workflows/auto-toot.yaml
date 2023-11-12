@@ -20,4 +20,5 @@ jobs:
       - name: Auto-toot
         env:
           MASTODON_ACCESS_TOKEN: "I HOPE THIS WORKS"
+        working-directory: ./autotoot
         run: go run main.go
