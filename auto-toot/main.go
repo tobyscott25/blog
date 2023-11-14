@@ -1,52 +1,35 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
-	"os"
 	"os/exec"
 	"strings"
 )
 
 func main() {
-
-	println("THE ROYAL TOOT!")
-	// Send a toot to Mastodon
-	println(os.Getenv("MASTODON_ACCESS_TOKEN"))
-
-	exec.Command(
-		"cd", "../",
-	)
-
-	// Get the latest commit hash
-	commitHash, err := exec.Command("git", "rev-parse", "HEAD").Output()
-	if err != nil {
-		fmt.Println("Error getting latest commit hash:", err)
-		return
-	}
-
-	// Get the list of files that have been created in the latest commit
-	cmd := exec.Command("git", "diff", "--diff-filter=A", "--name-only", strings.TrimSpace(string(commitHash)), "HEAD~1")
+	// Execute 'git show --pretty="" --name-only' to get the list of files changed in the last commit
+	cmd := exec.Command("git", "show", "--pretty=format:", "--name-only", "--diff-filter=A")
 	var out bytes.Buffer
 	cmd.Stdout = &out
-	err = cmd.Run()
+	err := cmd.Run()
 	if err != nil {
-		fmt.Println("Error running git diff:", err)
+		fmt.Printf("Error running git show: %v\n", err)
 		return
 	}
 
-	// Filter the list for files in content/posts/*
-	createdFiles := []string{}
-	for _, file := range strings.Split(out.String(), "\n") {
-		if strings.HasPrefix(file, "content/posts/") {
-			createdFiles = append(createdFiles, file)
+	// Use a scanner to read the command output line by line
+	scanner := bufio.NewScanner(&out)
+	for scanner.Scan() {
+		file := scanner.Text()
+		// Skip empty lines
+		if strings.TrimSpace(file) != "" {
+			fmt.Println(file)
 		}
 	}
 
-	// Print the list of newly created files
-	fmt.Println("Newly created files in 'content/posts/':")
-	for _, file := range createdFiles {
-		fmt.Println(file)
+	if err := scanner.Err(); err != nil {
+		fmt.Printf("Error reading command output: %v\n", err)
 	}
-
 }
