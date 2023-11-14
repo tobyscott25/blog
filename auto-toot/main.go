@@ -14,6 +14,10 @@ func main() {
 	// Send a toot to Mastodon
 	println(os.Getenv("MASTODON_ACCESS_TOKEN"))
 
+	exec.Command(
+		"cd", "../",
+	)
+
 	// Get the latest commit hash
 	commitHash, err := exec.Command("git", "rev-parse", "HEAD").Output()
 	if err != nil {
