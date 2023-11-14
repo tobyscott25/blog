@@ -65,7 +65,7 @@ func ParseHugoPost(filePath string) (HugoPost, error) {
 	contentString := fileContent.String()
 
 	// Convert the file path to a blog post URL
-	postSlug := strings.TrimPrefix(filePath, "content/posts/")
+	postSlug := strings.TrimPrefix(filePath, "../content/posts/")
 	postSlug = strings.TrimSuffix(postSlug, ".md")
 	postSlug = strings.TrimSuffix(postSlug, "/index") // Remove '/index' if present
 	blogPostURL := fmt.Sprintf("https://tobyscott.dev/posts/%s", postSlug)
