@@ -41,8 +41,12 @@ func main() {
 	// Split the output into lines
 	changedFiles := strings.Split(out.String(), "\n")
 
+	fmt.Println("iterating through added files")
+	fmt.Println(changedFiles)
+
 	// Iterate through the list of changed files and post each one to Mastodon
 	for _, file := range changedFiles {
+		fmt.Printf("File: %s\n", file)
 		// Check if the file is in the 'content/posts/' directory
 		if strings.HasPrefix(file, "content/posts/") {
 
