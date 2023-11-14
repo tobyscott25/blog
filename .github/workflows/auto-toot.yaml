@@ -19,6 +19,8 @@ jobs:
       - run: go mod download
       - name: Auto-toot
         env:
-          MASTODON_ACCESS_TOKEN: "I HOPE THIS WORKS"
+          MASTODON_ACCESS_TOKEN: ${secrets.MASTODON_ACCESS_TOKEN}
+          MASTODON_ORIGIN: ${secrets.MASTODON_ORIGIN}
+          BLOG_ORIGIN: ${secrets.BLOG_ORIGIN}
         working-directory: ./auto-toot
         run: go run main.go

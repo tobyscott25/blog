@@ -9,8 +9,8 @@ import (
 
 func main() {
 
-	mastodonUrl := "https://mas.to"
-	blogUrl := "https://www.tobyscott.dev"
+	mastodonOrigin := os.Getenv("MASTODON_ORIGIN")
+	blogOrigin := os.Getenv("BLOG_ORIGIN")
 	accessToken := os.Getenv("MASTODON_ACCESS_TOKEN")
 
 	newFiles, err := helpers.GetNewFilesInLastCommit()
@@ -25,7 +25,7 @@ func main() {
 
 			filePath := "../" + file
 
-			hugoPostDetails, err := helpers.ParseHugoPost(filePath, blogUrl)
+			hugoPostDetails, err := helpers.ParseHugoPost(filePath, blogOrigin)
 			if err != nil {
 				fmt.Printf("Error parsing Hugo post: %v\n", err)
 				return
@@ -34,11 +34,11 @@ func main() {
 			hashtagString := hugoPostDetails.GetHashtagString()
 			status := fmt.Sprintf("%s\n\n%s\n\n%s", hugoPostDetails.Description, hugoPostDetails.URL, hashtagString)
 
-			helpers.SendToot(mastodonUrl, accessToken, status)
+			helpers.SendToot(mastodonOrigin, accessToken, status)
 			if err != nil {
-				fmt.Printf("Error posting about %s to Mastodon: %v\n", file, err)
+				fmt.Printf("Error posting about %s to Mastodon: %v\n", filePath, err)
 			} else {
-				fmt.Printf("Successfully posted about %s to Mastodon.\n", file)
+				fmt.Printf("Successfully posted about %s to Mastodon.\n", filePath)
 			}
 		}
 	}
