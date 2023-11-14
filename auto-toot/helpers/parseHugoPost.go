@@ -3,6 +3,7 @@ package helpers
 import (
 	"bufio"
 	"fmt"
+	"net/url"
 	"os"
 	"regexp"
 	"strings"
@@ -14,35 +15,7 @@ type HugoPost struct {
 	URL         string   `json:"url"`
 }
 
-func ParseHugoPost(filePath string) (HugoPost, error) {
-
-	// 	fileContent := `
-	// ---
-	// date: 2023-11-07T10:35:52+11:00
-	// title: "Configuring Kubuntu"
-	// description: "Until recently, Arch Linux has been my daily driver. Here's how I configure my new Kubuntu installation."
-	// tags: [
-	//     "Linux",
-	//     "Kubuntu",
-	//     "Ubuntu",
-	//     "KDE Plasma",
-	//     "Flatpak",
-	//     "Flathub",
-	//     "Discover",
-	//     "Defaults",
-	//     "Editor",
-	//     "Vim",
-	//     "Nano",
-	//     "Shell",
-	//     "Bash",
-	//     "Zsh",
-	//     "OhMyZsh",
-	//   ]
-	// # author: ["Toby Scott", "Other example contributor"]
-	// hidden: false
-	// draft: false
-	// ---
-	// `
+func ParseHugoPost(filePath string, blogUrl string) (HugoPost, error) {
 
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -68,7 +41,11 @@ func ParseHugoPost(filePath string) (HugoPost, error) {
 	postSlug := strings.TrimPrefix(filePath, "../content/posts/")
 	postSlug = strings.TrimSuffix(postSlug, ".md")
 	postSlug = strings.TrimSuffix(postSlug, "/index") // Remove '/index' if present
-	blogPostURL := fmt.Sprintf("https://tobyscott.dev/posts/%s", postSlug)
+
+	// Use url.QueryEscape to encode spaces and other characters in the post slug
+	postSlug = url.QueryEscape(postSlug)
+
+	blogPostURL := fmt.Sprintf(blogUrl+"/posts/%s", postSlug)
 
 	// Use regex to find the description block
 	descriptionRegex := regexp.MustCompile(`description: "(.*?)"`)

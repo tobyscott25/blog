@@ -19,7 +19,7 @@ func SendToot(mastodonURL string, accessToken string, status string) error {
 	data.Set("status", status)
 
 	// Create a new request
-	req, err := http.NewRequest("POST", mastodonURL, strings.NewReader(data.Encode()))
+	req, err := http.NewRequest("POST", mastodonURL+"/api/v1/statuses", strings.NewReader(data.Encode()))
 	if err != nil {
 		fmt.Printf("Error creating request: %v\n", err)
 		return err
