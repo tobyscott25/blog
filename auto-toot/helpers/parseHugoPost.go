@@ -1,7 +1,9 @@
 package helpers
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"regexp"
 	"strings"
 )
@@ -12,7 +14,55 @@ type HugoPost struct {
 	URL         string   `json:"url"`
 }
 
-func ParseHugoPost(filePath string, fileContent string) (HugoPost, error) {
+func ParseHugoPost(filePath string) (HugoPost, error) {
+
+	// 	fileContent := `
+	// ---
+	// date: 2023-11-07T10:35:52+11:00
+	// title: "Configuring Kubuntu"
+	// description: "Until recently, Arch Linux has been my daily driver. Here's how I configure my new Kubuntu installation."
+	// tags: [
+	//     "Linux",
+	//     "Kubuntu",
+	//     "Ubuntu",
+	//     "KDE Plasma",
+	//     "Flatpak",
+	//     "Flathub",
+	//     "Discover",
+	//     "Defaults",
+	//     "Editor",
+	//     "Vim",
+	//     "Nano",
+	//     "Shell",
+	//     "Bash",
+	//     "Zsh",
+	//     "OhMyZsh",
+	//   ]
+	// # author: ["Toby Scott", "Other example contributor"]
+	// hidden: false
+	// draft: false
+	// ---
+	// `
+
+	file, err := os.Open(filePath)
+	if err != nil {
+		fmt.Printf("Error opening file: %v\n", err)
+		return HugoPost{}, err
+	}
+	defer file.Close()
+
+	var fileContent strings.Builder
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		fileContent.WriteString(scanner.Text() + "\n")
+	}
+	if err := scanner.Err(); err != nil {
+		fmt.Printf("Error reading file: %v\n", err)
+		return HugoPost{}, err
+	}
+
+	// Convert the builder to a string for regex processing
+	contentString := fileContent.String()
 
 	// Convert the file path to a blog post URL
 	postSlug := strings.TrimPrefix(filePath, "content/posts/")
@@ -22,7 +72,7 @@ func ParseHugoPost(filePath string, fileContent string) (HugoPost, error) {
 
 	// Use regex to find the description block
 	descriptionRegex := regexp.MustCompile(`description: "(.*?)"`)
-	descriptionMatch := descriptionRegex.FindStringSubmatch(fileContent)
+	descriptionMatch := descriptionRegex.FindStringSubmatch(contentString)
 
 	description := ""
 	if len(descriptionMatch) > 1 {
@@ -31,7 +81,7 @@ func ParseHugoPost(filePath string, fileContent string) (HugoPost, error) {
 
 	// Use regex to find the tags block (taking new lines into account)
 	tagsRegex := regexp.MustCompile(`(?s)tags:\s+\[(.*?)\]`)
-	tagsMatch := tagsRegex.FindStringSubmatch(fileContent)
+	tagsMatch := tagsRegex.FindStringSubmatch(contentString)
 
 	// Process tags
 	var tags []string
