@@ -2,7 +2,24 @@
 date: 2023-11-07T10:35:52+11:00
 title: "Configuring Kubuntu"
 description: "Until recently, Arch Linux has been my daily driver. Here's how I configure my new Kubuntu installation."
-tags: ["Linux", "Kubuntu", "Ubuntu", "KDE Plasma", "Flatpak", "Flathub", "Discover", "Defaults", "Editor", "Vim", "Nano", "Shell", "Bash", "Zsh", "OhMyZsh"]
+tags:
+  [
+    "Linux",
+    "Kubuntu",
+    "Ubuntu",
+    "KDE Plasma",
+    "Flatpak",
+    "Flathub",
+    "Discover",
+    "Defaults",
+    "Editor",
+    "Vim",
+    "Nano",
+    "Shell",
+    "Bash",
+    "Zsh",
+    "OhMyZsh",
+  ]
 # author: ["Toby Scott", "Other example contributor"]
 hidden: false
 draft: false
@@ -11,7 +28,6 @@ draft: false
 Until recently, Arch Linux has been my daily driver. I love the rolling release model and you really can't fault the AUR. But always getting the latest features and patches is a double edged sword because along with those benefits come the latest bugs and issues. I considered the benefits to outweigh the short comings up until one dreadful day...
 
 ```bash
-# Updating my system with an AUR helper as per normal
 paru
 
 # Things started playing up so I restarted my machine
@@ -23,8 +39,10 @@ And my system was bricked. Yes, I could've chroot-ed in to find and fix the prob
 ## Why Kubuntu?
 
 I've had a very stable experience in the past with Ubuntu and although the GNOME desktop is stunning, I prefer the KDE Plasma desktop for a couple of reasons:
+
 - The Wayland session fixes all scaling issues I've ever faced running a 4k monitor next to a 1080p monitor 🎉
 - I am a fan of the Windows-like start menu and the Mac-like global menu. Plasma ships both of these out of the box!
+
 ## Setting up fresh installation of Kubuntu 23.10
 
 #### Setting the default editor to Vim
@@ -55,11 +73,13 @@ git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_CUSTOM/
 Now let's configure zsh, edit `~/.zshrc`
 
 1. Find this line and add the missing plugins, some are there by default:
+
 ```
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting history-substring-search history aliases sudo themes docker nmap kubectl)
 ```
 
 2. Change `ZSH_THEME` from `bobbyrussel` to `af-magic`:
+
 ```env
 ZSH_THEME="af-magic"
 ```
@@ -87,4 +107,3 @@ sudo reboot now
 Once your system has restarted, open Discover, go to Settings and make Flatpak the default source.
 
 Next time you're looking for a GUI program such as Spotify, Discord, VLC, etc you can just search for it in Discover and install it from there. You'll get a break down of all the permissions that Flatpak app requires, and more. You can also see all this information (including whether or not the Flatpak is verified as the official Flatpak published by the official company) on the Flathub website: https://flathub.org/
-
