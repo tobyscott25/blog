@@ -60,3 +60,26 @@ jobs:
 
       - name: Invalidate CloudFront distribution cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+
+  post-to-mastodon:
+    name: Post to Mastodon
+    needs: build-and-deploy
+    runs-on: ubuntu-22.04
+    if: ${{ contains(github.event.head_commit.modified, 'content/posts/') }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch all history for all tags and branches
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+      - run: go mod download
+      - name: Auto-toot
+        env:
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          MASTODON_ORIGIN: ${{ secrets.MASTODON_ORIGIN }}
+          BLOG_ORIGIN: ${{ secrets.BLOG_ORIGIN }}
+        working-directory: ./auto-toot
+        run: go run main.go
