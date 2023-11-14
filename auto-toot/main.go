@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"fmt"
 	"os/exec"
@@ -19,17 +18,15 @@ func main() {
 		return
 	}
 
-	// Use a scanner to read the command output line by line
-	scanner := bufio.NewScanner(&out)
-	for scanner.Scan() {
-		file := scanner.Text()
-		// Skip empty lines
-		if strings.TrimSpace(file) != "" {
+	// Split the output into lines
+	changedFiles := strings.Split(out.String(), "\n")
+
+	// Iterate through the list of changed files and print only the added ones in 'content/posts/'
+	fmt.Println("Added files in 'content/posts/':")
+	for _, file := range changedFiles {
+		// Check if the file is in the 'content/posts/' directory
+		if strings.HasPrefix(file, "content/posts/") {
 			fmt.Println(file)
 		}
-	}
-
-	if err := scanner.Err(); err != nil {
-		fmt.Printf("Error reading command output: %v\n", err)
 	}
 }
