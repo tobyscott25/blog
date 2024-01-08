@@ -1,5 +1,5 @@
 ---
-date: 2023-11-07T10:35:52+11:00
+date: 2024-01-08T10:35:52+11:00
 title: "Authenticating GitHub CLI over SSH"
 description: "A quick tutorial on authenticating your GitHub CLI over SSH with an existing key"
 tags:
