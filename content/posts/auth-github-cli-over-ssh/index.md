@@ -149,6 +149,6 @@ That command will start it if it's not already running. Now let's add your priva
 ssh-add /home/toby/.ssh/id_ed25519
 ```
 
-You will need to update the path to match the correct path to your SSH private key. Finally, you'll be prompted for your passphrase, and it will be added to the SSH agent.
+You will need to update the path to match the correct path to your SSH private key. Finally, you'll be prompted for your passphrase, and it will be added to the SSH agent. To make sure that the SSH agent is always running and automatically start it if it's not, you can add `eval $(ssh-agent -s)` to your shell profile (eg. one of `.zshrc`, `.zprofile`, `.bashrc`, etc)
 
 While the SSH agent is running, you won't need to enter your passphrase again!
