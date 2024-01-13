@@ -108,7 +108,7 @@ We've authenticated the GitHub CLI over SSH, but we're still yet to actually con
 
 ```bash
 git config --global user.name "Toby Scott"
-git config --global user.email "hi@tobyscott.dev"
+git config --global user.email "your.email@example.com"
 ```
 
 Only the commit author name and email are required, but there is a lot more you can configure if you wish to. Personally, I like to do the following:
@@ -137,7 +137,7 @@ git clone git@github.com:tobyscott25/blog
 
 If the repository you cloned is private you will have been asked to enter your SSH key's passphrase. You will be prompted for this every time it requires authentication when talking to the remote (GitHub), which can get annoying fast. Let's use `ssh-agent` to handle that for us.
 
-You'll want to check if the SSH agent is running and start it if it's not. You can do that with this command:
+First, run the following command to start the SSH agent in the background:
 
 ```bash
 eval $(ssh-agent -s)
@@ -146,9 +146,33 @@ eval $(ssh-agent -s)
 That command will start it if it's not already running. Now let's add your private key to the agent.
 
 ```bash
-ssh-add /home/toby/.ssh/id_ed25519
+ssh-add $HOME/.ssh/id_ed25519
 ```
 
-You will need to update the path to match the correct path to your SSH private key. Finally, you'll be prompted for your passphrase, and it will be added to the SSH agent. To make sure that the SSH agent is always running and automatically start it if it's not, you can add `eval $(ssh-agent -s)` to your shell profile (eg. one of `.zshrc`, `.zprofile`, `.bashrc`, etc)
+You may need to update the path to match the correct path to your SSH private key. Finally, you'll be prompted for your passphrase, and it will be added to the SSH agent. You can confirm that it has been added by running the following command to list all keys that have been added:
 
-While the SSH agent is running, you won't need to enter your passphrase again!
+```bash
+ssh-add -l
+```
+
+Lastly, we want to start the SSH agent automatically if it's not already running when we open a shell, add these lines to your `~/.bash_profile` if you use bash, or `~/.zprofile` if you use ZSH:
+
+```sh
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  # Check for a currently running instance of the agent
+  RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+  if [ "$RUNNING_AGENT" = "0" ]; then
+    # Launch a new instance of the agent
+    ssh-agent -s &> $HOME/.ssh/ssh-agent
+  fi
+  eval `cat $HOME/.ssh/ssh-agent`
+fi
+```
+
+(Script sourced from: https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials)
+
+### Conclusion
+
+Congratulations, you've successfully configured Git to authenticate over SSH. 🎉
+
+Note: I'm running Kubuntu, the commands and paths may differ slightly if you're on Mac or Windows, but essentially the steps wil be the same.
