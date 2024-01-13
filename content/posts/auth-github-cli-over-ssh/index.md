@@ -1,7 +1,7 @@
 ---
 date: 2024-01-08T10:35:52+11:00
-title: "Authenticating GitHub CLI over SSH"
-description: "A quick tutorial on authenticating your GitHub CLI over SSH with an existing key"
+title: "Authenticating Git and GitHub CLI over SSH"
+description: "Configuring Git and GitHub CLI to authenticate over SSH is easy, more secure, and a great step for those wanting a deeper understanding of Git configuration and authentication."
 tags:
   [
     "Linux",
@@ -62,7 +62,7 @@ gh auth logout
 Generate an SSH key pair with `ssh-keygen`. Choose a long and secure passphrase that you will remember.
 
 ```bash
-ssh-keygen -t ed25519 -C "hi@tobyscott.dev"
+ssh-keygen -t ed25519 -C "your.email@example.com"
 ```
 
 By default, it will create a `id_ed25519` private key file and `id_ed25519.pub` public key file in your `~/.ssh` directory.
