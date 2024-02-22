@@ -48,10 +48,10 @@ I've had a very stable experience in the past with Ubuntu and although the GNOME
 
 #### Installing some basics
 
-Kubuntu doesn't ship with these by default, so let's install them.
+Let's install ZSH and some fundamental CLI tools:
 
 ```bash
-sudo apt install zsh curl vim
+sudo apt install zsh curl vim ranger neofetch htop
 ```
 
 #### Setting the default editor to Vim
@@ -62,7 +62,7 @@ I don't know why Canonical chose Nano as the default editor but Vim is far surpe
 sudo update-alternatives --config editor
 ```
 
-#### Installing Zsh (with Oh My Zsh + Plugins)
+#### Installing Oh My Zsh + Plugins
 
 Once you've used [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh), you really can't go back to plain ol' bash.
 
@@ -113,3 +113,36 @@ sudo reboot now
 Once your system has restarted, open Discover, go to Settings and make Flatpak the default source.
 
 Next time you're looking for a GUI program such as Spotify, Discord, VLC, etc you can just search for it in Discover and install it from there. You'll get a break down of all the permissions that Flatpak app requires, and more. You can also see all this information (including whether or not the Flatpak is verified as the official Flatpak published by the official company) on the Flathub website: https://flathub.org/
+
+#### Installing software in a fresh Kubuntu installation
+
+I usually install Flatpaks (and Snaps in very rare cases) through Discover. But I keep this list of install commands handy to quickly install everything I need after a fresh system install:
+
+```bash
+# Daily use
+flatpak install flathub com.google.Chrome -y
+flatpak install flathub com.brave.Browser -y
+flatpak install flathub com.spotify.Client -y
+flatpak install flathub com.discordapp.Discord -y
+flatpak install flathub org.videolan.VLC -y
+
+# Productivity
+flatpak install flathub org.mozilla.Thunderbird -y
+flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub org.gimp.GIMP -y
+flatpak install flathub org.kde.krita -y
+flatpak install flathub com.obsproject.Studio -y
+
+# Development
+sudo snap install code --classic # Snap, ew
+flatpak install flathub com.getpostman.Postman -y
+flatpak install flathub io.dbeaver.DBeaverCommunity -y
+
+# Gaming
+flatpak install flathub com.valvesoftware.Steam -y
+flatpak install flathub org.DolphinEmu.dolphin-emu -y
+
+# System tools
+flatpak install flathub org.flameshot.Flameshot -y
+
+```

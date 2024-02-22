@@ -83,6 +83,11 @@ params:
     - name: "email"
       url: "mailto:hi@tobyscott.dev"
 
+  # Search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+
   ShowShareButtons: true
   ShareButtons: ["linkedin", "reddit", "twitter"]
   ShowReadingTime: true
@@ -100,4 +105,4 @@ outputs:
   home:
     - HTML
     - RSS
-    - JSON # is necessary
+    - JSON # necessary for search
