@@ -34,9 +34,12 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v3
-        with:
-          submodules: recursive # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+        # with:
+        #   submodules: recursive # Fetch Hugo themes (true OR recursive)
+        #   fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Get submodules
+        run: git submodule update --init --recursive
 
       - name: Install Hugo
         run: sudo apt install hugo -y
