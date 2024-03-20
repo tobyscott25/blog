@@ -56,7 +56,7 @@ params:
     Content: Software Engineer, Greater Melbourne Area | Currently working on [Safety Beacon (NFP)](https://github.com/safetybeacon) and [Study Score](https://studyscore.app)
 
   profileMode:
-    enabled: true # Disable this to change to "home info" mode
+    enabled: false # Disable this to change to "home info" mode
     title: Toby Scott # optional, default will be site title
     subtitle: Software Engineer, Greater Melbourne Area
     imageUrl: "/avatar.png" # optional

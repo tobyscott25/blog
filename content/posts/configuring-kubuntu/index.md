@@ -23,6 +23,10 @@ tags:
 # author: ["Toby Scott", "Other example contributor"]
 hidden: false
 draft: false
+cover:
+  image: "cover.png"
+  alt: "Kubuntu desktop screenshot"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
 Until recently, Arch Linux has been my daily driver. I love the rolling release model and you really can't fault the AUR. But always getting the latest features and patches is a double edged sword because along with those benefits come the latest bugs and issues. I considered the benefits to outweigh the short comings up until one dreadful day...

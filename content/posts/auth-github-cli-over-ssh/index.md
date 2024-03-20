@@ -18,11 +18,15 @@ tags:
     "Shell",
     "ed25519",
     "Identity",
-    "Security"
+    "Security",
   ]
 # author: ["Toby Scott", "Other example contributor"]
 hidden: false
 draft: false
+cover:
+  image: "cover.webp"
+  alt: "GitHub"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
 ### Prerequisites
@@ -30,7 +34,7 @@ draft: false
 Install GitHub CLI if you haven't already
 
 ```bash
-sudo apt install gh
+brew install gh
 ```
 
 Check that you are logged out.
@@ -146,7 +150,17 @@ eval $(ssh-agent -s)
 That command will start it if it's not already running. Now let's add your private key to the agent.
 
 ```bash
+# Add the key to the agent
 ssh-add $HOME/.ssh/id_ed25519
+```
+
+If you're on macOS you can optionally use Apple's custom options (`--apple-use-keychain` and `--apple-load-keychain`) that allow you to interact with the [OS keychain](https://support.apple.com/en-gb/guide/keychain-access/kyca1083/mac).
+
+> As of macOS Monterey, the short-hand flags (`-K` and `-A`) have been deprecated and the long form flags are preferred
+
+```bash
+# Add the key to the agent and store the passphrase in the keychain
+ssh-add --apple-use-keychain $HOME/.ssh/id_ed25519
 ```
 
 You may need to update the path to match the correct path to your SSH private key. Finally, you'll be prompted for your passphrase, and it will be added to the SSH agent. You can confirm that it has been added by running the following command to list all keys that have been added:
