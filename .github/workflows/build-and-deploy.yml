@@ -32,20 +32,19 @@ jobs:
       BUILD_VERSION: ${{ github.ref_name }}-${{ needs.get-short-sha.outputs.short-sha }}
 
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v3
-        # with:
-        #   submodules: recursive # Fetch Hugo themes (true OR recursive)
+      - uses: actions/checkout@v4
+        with:
+          submodules: "recursive" # Fetch Hugo themes (true OR recursive)
         #   fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Get submodules
-        run: git submodule update --init --recursive
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.119.0"
+          # extended: true
 
-      - name: Install Hugo
-        run: sudo apt install hugo -y
-
-      - name: Build site artifacts
-        run: hugo --minify # Builds into folder named "public"
+      - name: Build
+        run: hugo --minify
 
       - name: Add build specifier to site artifacts
         run: echo "${{ env.BUILD_VERSION }}" >> public/build.txt
@@ -71,14 +70,17 @@ jobs:
     if: ${{ contains(github.event.head_commit.modified, 'content/posts/') }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # fetch all history for all tags and branches
+
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
           go-version: "1.21"
+
       - run: go mod download
+
       - name: Auto-toot
         env:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
