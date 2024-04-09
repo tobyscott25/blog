@@ -1,11 +1,12 @@
 ---
 date: 2024-03-25T18:04:33+11:00
-title: "Deploying with Docker"
+title: "Docker as a deployment platform"
 description: "..."
 tags:
   [
     "Docker",
     "Deployment",
+    "Platform"
     "Production",
     "Microservices",
     "Containers",
@@ -84,6 +85,48 @@ class D,D1 shared;
 ```
 
 ---
+
+## The hard way
+
+Okay, hopefully this section makes you feel better about your own practices, just remember we all start somewhere... 😂
+
+#### Running locally
+
+The first web app I built was a social network back in 2015, written in PHP with a MySQL database and hosted from my school laptop so my friends could access it over the local network.
+
+At this point in time I knew nothing about running web servers or databases, I just started a magical program called [XAMPP](https://www.apachefriends.org/) and everything ran for me. 🤷🏽‍♂️
+
+#### Running on a live server
+
+I eventually moved it to an Ubuntu VPS where I needed to install a full AMP (Apache, MySQL, PHP) stack myself, and quickly realised that sometimes code that worked locally **didn't work on the server**, but better yet, a simple `sudo apt update && sudo apt upgrade` would sometimes just **suddenly break my app** since it updated the dependencies installed natively on the system. 🤯
+
+Given how difficult it was to keep the code working locally and live, I ended up ditching my local environment and just developing directly on the live server via SFTP, with **zero version control** and patching any breakages that happened when I ran a system update. Feeling better about your own practices yet? 🤦🏽‍♂️
+
+#### Running multiple web apps
+
+When the time came to serve more websites, I found [Apache virtual hosts](https://httpd.apache.org/docs/2.4/vhosts/) did the trick, but then they all used the same version of Apache (importantly, PHP), so a system update that introduced a breaking change would break all my websites at once. 😭
+
+For those who are visual like me, here's a diagram of what I had running on my VPS:
+
+```mermaid
+graph TB
+
+subgraph A [VPS]
+    B[Website 1]
+    C[Website 2]
+    D[Website 3]
+end
+
+B --> A
+C --> A
+D --> A
+```
+
+## The easy way - Docker as a platform 🚢
+
+Fast forward almost a decade and I'm finally using Docker containers to solve the dependency problem, but . But running containers on AWS App Runner or Fargate is expensive, and if I suddenly get a lot of traffic for
+
+K8S was overkill for me, but I could still lean into Docker as a deployment platform.
 
 ## Install Docker on your EC2 instance
 
