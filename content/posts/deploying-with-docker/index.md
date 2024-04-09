@@ -35,98 +35,68 @@ hidden: true
 draft: true
 ---
 
-```mermaid
-sequenceDiagram
-    participant Aliasdasd
-    participant Bob
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br/>prevail!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
-```
-
-```mermaid
-graph TB
-
-subgraph A [Big Box]
-    B[Box 1]
-    C[Box 2]
-    D[Box 3]
-end
-
-B --> C
-C --> D
-```
-
-```mermaid
-graph TB
-
-subgraph A [Big Box 1]
-    B[Box 1]
-    C[Box 2]
-    D[Box 3]
-end
-
-subgraph E [Big Box 2]
-    F[Box 4]
-    D1[Box 3]
-end
-
-B --> C
-C --> D
-F -.-> D1
-
-classDef shared fill:#f9f,stroke:#333,stroke-width:2px;
-class D,D1 shared;
-```
-
----
-
 ## The hard way
 
-Okay, hopefully this section makes you feel better about your own practices, just remember we all start somewhere... 😂
+Okay, hopefully this section makes you feel better about your own practices, just remember we all start somewhere... 😅
 
 #### Running locally
 
-The first web app I built was a social network back in 2015, written in PHP with a MySQL database and hosted from my school laptop so my friends could access it over the local network.
+The first web app I built was a social network back in 2015, written in PHP with a MariaDB database and hosted from my school laptop so my friends could access it over the local network.
 
 At this point in time I knew nothing about running web servers or databases, I just started a magical program called [XAMPP](https://www.apachefriends.org/) and everything ran for me. 🤷🏽‍♂️
 
 #### Running on a live server
 
-I eventually moved it to an Ubuntu VPS where I needed to install a full AMP (Apache, MySQL, PHP) stack myself, and quickly realised that sometimes code that worked locally **didn't work on the server**, but better yet, a simple `sudo apt update && sudo apt upgrade` would sometimes just **suddenly break my app** since it updated the dependencies installed natively on the system. 🤯
+I eventually moved it to an Ubuntu VPS where I needed to install a full AMP (Apache, MariaDB, PHP) stack myself, and quickly realised that sometimes code that worked locally **didn't work on the server**, but better yet, a simple `sudo apt update && sudo apt upgrade` would sometimes just **suddenly break my app** since it updated the dependencies installed natively on the system.
 
 Given how difficult it was to keep the code working locally and live, I ended up ditching my local environment and just developing directly on the live server via SFTP, with **zero version control** and patching any breakages that happened when I ran a system update. Feeling better about your own practices yet? 🤦🏽‍♂️
 
 #### Running multiple web apps
 
-When the time came to serve more websites, I found [Apache virtual hosts](https://httpd.apache.org/docs/2.4/vhosts/) did the trick, but then they all used the same version of Apache (importantly, PHP), so a system update that introduced a breaking change would break all my websites at once. 😭
+When the time came to serve more websites, I found [Apache virtual hosts](https://httpd.apache.org/docs/2.4/vhosts/) did the trick, but because they all used the same version of Apache (therefore, PHP) and MariaDB, a system update that introduced a breaking change would break all the websites at once!
 
-For those who are visual like me, here's a diagram of what I had running on my VPS:
+#### Live server architecture diagram
 
 ```mermaid
-graph TB
-
-subgraph A [VPS]
-    B[Website 1]
-    C[Website 2]
-    D[Website 3]
-end
-
-B --> A
-C --> A
-D --> A
+flowchart LR
+    A["Public internet"]
+    B["Apache (on port 80 and 443)"]
+    C[("MariaDB (on port 3306)")]
+    A-->|User requests web page|B
+    B-->|Server responds to initial request|A
+    B---|Web server talks to DB on port 3306|C
+    A-. DB is publicly accessible on port 3306 unless firewall is configured to block it .->C
 ```
 
 ## The easy way - Docker as a platform 🚢
 
-Fast forward almost a decade and I'm finally using Docker containers to solve the dependency problem, but . But running containers on AWS App Runner or Fargate is expensive, and if I suddenly get a lot of traffic for
+Fast forward almost a decade and I've found a perfect balance for me that leverages containerisation without the complexity level of Kubernetes.
+
+finally using Docker containers to solve the dependency problem, but . But running containers on AWS App Runner or Fargate is expensive, and if I suddenly get a lot of traffic for
 
 K8S was overkill for me, but I could still lean into Docker as a deployment platform.
+
+```mermaid
+flowchart TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+```
+
+```mermaid
+flowchart TB
+    c1-->a2
+    subgraph ide1 [one]
+    a1-->a2
+    end
+```
 
 ## Install Docker on your EC2 instance
 
