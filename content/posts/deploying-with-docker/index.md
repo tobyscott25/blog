@@ -6,7 +6,7 @@ tags:
   [
     "Docker",
     "Deployment",
-    "Platform"
+    "Platform",
     "Production",
     "Microservices",
     "Containers",
