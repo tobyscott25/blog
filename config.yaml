@@ -52,8 +52,8 @@ params:
   defaultTheme: auto
 
   homeInfoParams:
-    Title: Hey there 👋
-    Content: Software Engineer, Greater Melbourne Area | Currently working on [Safety Beacon (NFP)](https://github.com/safetybeacon) and [Study Score](https://studyscore.app)
+    Title: Hey there, I'm Toby 👋
+    Content: Software Engineer and Independant Consultant, Greater Melbourne Area
 
   profileMode:
     enabled: false # Disable this to change to "home info" mode
@@ -94,10 +94,10 @@ params:
   ShowToc: true
   ShowBreadCrumbs: true
   # ShowWordCount: true
-  editPost:
-    URL: "https://github.com/tobyscott25/tobyscott.dev/tree/main/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+  # editPost:
+  #   URL: "https://github.com/tobyscott25/tobyscott.dev/tree/main/content"
+  #   Text: "Suggest Changes" # edit text
+  #   appendFilePath: true # to append file path to Edit link
   ShowCodeCopyButtons: true
   # ShowPostNavLinks: true
 
