@@ -52,7 +52,7 @@ params:
   defaultTheme: auto
 
   homeInfoParams:
-    Title: Welcome 👋
+    Title: Hey there 👋
     Content: Software Engineer, Greater Melbourne Area | Currently working on [Safety Beacon (NFP)](https://github.com/safetybeacon) and [Study Score](https://studyscore.app)
 
   profileMode:
