@@ -38,7 +38,24 @@ menu:
       url: https://github.com/tobyscott25
       weight: 50
 
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
+
 params:
+  math: true
+
   # SEO
   title: Toby Scott
   description: Personal blog of thoughts and technical discoveries
