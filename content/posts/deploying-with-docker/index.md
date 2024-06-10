@@ -33,6 +33,10 @@ tags:
 # author: ["Toby Scott", "Other example contributor"]
 hidden: true
 draft: true
+cover:
+  image: "docker.png"
+  alt: "Docker banner"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
 ## The hard way
