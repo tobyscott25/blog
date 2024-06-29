@@ -19,7 +19,7 @@ git submodule update --remote --merge
 Create a new blog post
 
 ```bash
-hugo new posts/title-of-the-post.md
+hugo new posts/title-of-the-post/index.md
 ```
 
 Start the development server (with drafts enabled)
