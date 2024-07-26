@@ -102,7 +102,7 @@ Now create an `index.html` file with the following contents and upload it to you
 </html>
 ```
 
-Now if you go to the Properties tab and scroll down to the Static Website Hosting section, you will see a URL that looks something like this: `https://your-bucket-name.s3-website-region.amazonaws.com`
+Now if you go to the Properties tab and scroll down to the Static Website Hosting section, you will see a URL that looks something like this: `http://your-bucket-name.s3-website-region.amazonaws.com`
 
 Visit it and you should see your uploaded `index.html` page rendered in the browser! Congrats, you now have a statically hosted website, but there are two things yet to address, it's currently served over HTTP (not HTTPS) and the domain is a little ugly (sorry Amazon), we want a "Mirror, mirror on the wall, who is the prettiest domain of them all?" kind of domain! For that we'll need something a little smarter than a static file storage bucket, such as a Load Balancer, but AWS makes this really easy (and cheap!) for us with their CloudFront CDN that supports this perfectly while hiding all that load-balancer magic from us!
 
@@ -218,9 +218,9 @@ You can see from a high level it does the following on every commit to the `main
 - Uploads the built React app assets (in the `dist` directory) to the S3 bucket.
 - Invalidate's the CDN cache so the new S3 bucket contents are reflected immediately.
 
-This all runs in the cloud on runners hosted by GitHub and we don't want to expose any sensitive information in this workflow file because it's stored as code in the repo. But GitHub still needs to know the secret values when running the workflow, so we will need to tell GitHub the values of the obfuscated secrets.
+This all runs in the cloud on runners hosted by GitHub and we don't want to expose any sensitive information in this workflow file because it's stored as code in the repo. But GitHub still needs to know the secret values when running the workflow, so we will need to tell GitHub the values of the secrets.
 
-Looking at the workflow file, the obfuscated secrets are as follows:
+Looking at the workflow file, the secrets are as follows:
 
 - `AWS_ACCESS_KEY_ID` - Must be generated via Security Credentials page.
 - `AWS_SECRET_ACCESS_KEY` - Must be generated via Security Credentials page.
