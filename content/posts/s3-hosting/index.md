@@ -1,14 +1,64 @@
 ---
 date: 2024-07-26T21:42:39+10:00
-title: "S3 Hosting"
-description: ""
-tags: []
+title: "Hosting a static website from an S3 bucket"
+description: "In this guide, we'll walk through the entire process involved in hosting a static website from an S3 bucket via a CDN over HTTPS with a custom domain, and finally, integrating a CICD pipeline using GitHub Actions."
+tags:
+  [
+    "AWS",
+    "S3",
+    "Bucket",
+    "CloudFront",
+    "CDN",
+    "HTTPS",
+    "CICD",
+    "GitHub",
+    "GitHub Actions",
+    "Cloud",
+    "Runners",
+    "Workers",
+    "StaticWebsite",
+    "Hosting",
+    "CloudComputing",
+    "WebDevelopment",
+    "DevOps",
+    "Serverless",
+    "Scalability",
+    "Security",
+    "Secrets",
+    "ManagedServices",
+    "Availability",
+    "React",
+    "NPM",
+    "SPA",
+    "SinglePageApplication",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "SSL",
+    "TLS",
+    "DNS",
+    "Domain",
+    "Subdomain",
+    "CNAME",
+    "CertificateManager",
+    "CloudFlare",
+    "LoadBalancer",
+    "WAF",
+    "DOS",
+    "Cache",
+    "Invalidation",
+    "Origin",
+    "Distribution",
+    "Policy",
+  ]
 # author: ["Toby Scott", "Other example contributor"]
 hidden: false
 draft: false
 ---
 
-In this article I'll walk you through hosting a static site over HTTPS with a custom domain from an S3 bucket and CDN, and setting up a CICD pipeline using GitHub actions for building and deploying your static website.
+### Introduction
+
+Hosting a static website on AWS provides a scalable and cost-effective solution with high availability. In this guide, we'll walk through the entire process, from setting up an S3 bucket to configuring CloudFront for CDN and HTTPS with a custom domain, and finally, integrating a CICD pipeline using GitHub Actions.
 
 ### Step 1: Create an S3 Bucket
 
@@ -172,4 +222,4 @@ Looking at the workflow file, the obfuscated secrets are as follows:
 - `S3_BUCKET_NAME` - The unique name of the bucket that holds the static assets.
 - `CLOUDFRONT_DISTRIBUTION_ID` - Can be found in the CloudFront service section.
 
-Collect all these sensitive values from your AWS console and go to your repo settings in GitHub and navigate to Secrets and variables > Actions. Add the secrets and their values as "repo secrets", then push a commit to the main branch and watch your app build and deploy!
+Add these required secrets to your GitHub repo under "Settings" -> "Secrets and variables" -> "Actions", then push a commit to the main branch and watch your app build and deploy!
