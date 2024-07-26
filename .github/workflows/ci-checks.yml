@@ -1,0 +1,27 @@
+name: CI checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch: # Allows the action to be run manually from GitHub UI
+
+jobs:
+  ci-checks:
+    name: Build and deploy
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.124.0"
+
+      - name: Build
+        run: hugo --minify
