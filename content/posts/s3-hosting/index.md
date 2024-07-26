@@ -54,6 +54,9 @@ tags:
 # author: ["Toby Scott", "Other example contributor"]
 hidden: false
 draft: false
+cover:
+  image: "static-hosting.webp"
+  alt: "Static website hosting"
 ---
 
 ### Introduction
@@ -144,6 +147,8 @@ It's worth noting, you cannot create a CNAME record at your domain's apex (eg. `
 Depending on the DNS server your computer talks to, your new domain may start resolving immediately or it may not, be prepared to allow up to 24 hours for your new DNS records to propagate to the DNS server you're using. If you need you, you can always override your local DNS resolution via the `/etc/hosts` file.
 
 Okay, let's now let's visit our static website from our brand new shiny domain! WAIT... Uh oh! We get an SSL certificate error! That's right, remember earlier when I mentioned the load balancer needs to use the certificate that knows about our custom domain? That's exactly why we're seeing this error, and this is a good thing! It means people can't just point any domain they like to your website!
+
+![Your connection is not private](images/connection-not-private.png)
 
 As I also mentioned before, Amazon hide's all the load-balancing complexity under the hood of their CloudFlare CDN, so let's tell CloudFlare to use our managed SSL certificate.
 
