@@ -118,13 +118,13 @@ Enabling WAF is entirely up to you, it doesn't matter either way for the sake of
 
 Under the 'Settings' section we can configure some more of the magic that uses a global load balancer under the hood to configure a custom domain and SSL certificates, but let's come back to that later. Create your distribution now! You'll need to wait a couple minutes for your CloudFront distribution to be provisioned. Sit tight!
 
-Keep note of the AWS region you're provisioning your CloudFront distribution in, we will need that in the next step!
-
 When it is done you should see your distribution's domain name under the "Details" section that looks something like `distribution-id.cloudfront.net`. Visit that and you will see the HTML page stored in your static bucket again, but over HTTPS this time! This indicates that your connection is secure and encrypted with an SSL certificate. But the domain is still a little ugly isn't it... If we point a custom domain straight to this CDN distribution we will get an SSL error because the SSL certificate used only supports your generated CloudFront distribution domain, this is what prevents anyone from pointing custom domains to any website. Let's get do that next.
 
 ### Step 3: Create a managed SSL Certificate
 
-Navigate to the Certificate Manager service in the AWS Management Console and make sure you have the same region selected as you did when creating the CloudFront distribution. The SSL certificate MUST be provisioned in the same AWS region as the CloudFront distribution that uses it. Once you have confirmed that, click "Request a certificate" and choose "Request a public certificate".
+Navigate to the Certificate Manager service in the AWS Management Console and switch to the US East (N. Virginia) Region (`us-east-1`). Once you have confirmed that, click "Request a certificate" and choose "Request a public certificate".
+
+> CloudFront is a global service, but it can only see SSL certificates provisioned in the `us-east-1` region, so you will need to switch to this region to create the certificate. Read more about this [here](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-certificate-issuer) if you're interested.
 
 As we mentioned before, the SSL certificate must know all domains that will be used to visit the website, so you will need to enter the (sub)domain(s) you want to point to this static site. Note, you can add more than one!
 
